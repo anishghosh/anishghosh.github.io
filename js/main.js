@@ -16,7 +16,7 @@ $(document).ready(function() {
 				var index = ids.indexOf($(this).attr("id"));
 				var transform = transformProperty[index]+" translateZ("+cubeWidth/2+"px)";
 				$(this).css("transform", transform);
-				$(this).css({"background-image": "url('assets/"+imgs[index]+"')", "background-size": "cover"})
+				$(this).css({"background-image": "url('http://placehold.it/"+cubeWidth+"x"+cubeHeight+"')", "background-size": "cover"})
 			});
 		}
 
