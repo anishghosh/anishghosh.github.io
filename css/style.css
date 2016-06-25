@@ -10,7 +10,7 @@ body {
 	top: 0;
 	width: 100vw;
 	height: 100vh;
-	background: #DB0A5B;
+	background: #03A678;
 	z-index: 99999;
 }
 
@@ -28,15 +28,34 @@ body {
 }
 
 @keyframes rotate {
-	from { transform: rotate(0deg); }
-	to { transform: rotate(360deg); }
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg);}
+}
+
+@keyframes blinking {
+	0% { opacity: 0; }
+	50% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes jump {
+	0% { margin-top: 0; }
+	50% { margin-top: 30px; }
+	100% { margin-top: 0; }
 }
 
 #loading svg path#g {
 	transform-origin: center 47%;
-	animation: rotate 1s infinite linear;
+	animation: rotate 1s infinite ease-in-out;
 }
 
+#loading svg {
+	animation: blinking 2s infinite ease-in-out;
+}
+
+#loading h1 {
+	animation: jump 1s infinite ease-in-out;
+}
 /** Navbar **/
 .navbar {
 	padding: 10px 40px;

@@ -7,6 +7,30 @@
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery.min.js"></script>
+	<script>
+		var txts = ["Prepare for <strong>AWESOMENESS</strong>!", "Are you ready to get <strong>AWED</strong>?", "Have a little Patience.", "Almost Done."];
+		var index = 0;
+		var i = 0;
+		var loading = setInterval(function() {
+			if(i>10) {
+				$("#loading h1").fadeOut(400, function() { $("#loading h1").html(txts[index]).fadeIn(); });
+				index = (index+1)%txts.length;
+				i = 0;
+			}
+			i++;
+		}, 500);
+
+		$(window).load(function() {
+			clearInterval(loading)
+			$("#loading h1").fadeOut(400, function() {
+				$("#loading h1").html("Here we go!").fadeIn().delay(2000, function(n){
+					$("#loading").fadeOut("slow");
+					$(".navbar").addClass("navbar-fixed-top");
+				}); 
+			});
+		});
+	</script>
 </head>
 <body>
 	<div class="container-fluid text-center" id="loading">
@@ -97,8 +121,6 @@
 			</div>
 		</div>
 	</div>
-
-	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.transit.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
