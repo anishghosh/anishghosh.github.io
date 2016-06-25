@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Portfolio</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span> 
+			</button>
+			<a href="#" class="navbar-brand">
+				<img src="assets/logo.svg">
+			</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#about" class="active">About</a></li>
+				<li><a href="#portfolio">Portfolio</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="container-fluid page" id="about">
+		<div class="row text-center">
+			<div class="col-xs-12">
+				<img src="assets/MyPic.png" class="img-responsive" style="margin: 0 auto;">
+				<h1>Hello, I'm <span id="name">Anish</span></h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid page" id="portfolio">
+		<div class="row text-center">
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<div id="wrap">
+					<div id="cube">
+						<div id="left"></div>
+						<div id="front"></div>
+						<div id="right"></div>
+						<div id="back"></div>
+					</div>
+				</div>
+				<!-- <button id="a">Click</button> -->
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid page" id="contact">
+		<div class="row text-center">
+			<div class="col-xs-12">
+				<h3>If you're curious to hear more about me, don't hesitate to get in touch</h3>
+				<div id="email">
+					<h1><a href="mailto:anish.g.alpha@gmail.com">anish.g.alpha@gmail.com</a></h1>
+				</div>
+				<div id="social-media">
+					<a href="#"><img src="assets/facebook-square.svg"></a>
+					<a href="#"><img src="assets/github.svg"></a>
+					<a href="#"><img src="assets/linkedin.svg"></a>
+					<a href="#"><img src="assets/twitter.svg"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.transit.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>

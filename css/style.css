@@ -1,0 +1,130 @@
+body {
+	font-family: Open Sans;
+	font-weight: 300;
+	color: #ffffff;
+}
+
+/** Navbar **/
+.navbar {
+	padding: 10px 40px;
+}
+
+.navbar-default {
+	background: transparent;
+	border: none;
+}
+
+.navbar-brand {
+	position: relative;
+}
+
+.navbar-brand>img {
+	position: absolute;
+	top: 0;
+	width: 40px;
+}
+
+ul.navbar-nav {
+	margin-right: 20px;
+}
+
+.navbar-default .navbar-nav>li>a {
+	font-size: 20px;
+	color: #cfcfcf !important;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+	background: none;
+	color: #ffffff !important;
+}
+
+/** Pages **/
+.page {
+	height: 100vh;
+}
+
+/** About Page **/
+#about {
+	background-color: #7f9972;
+}
+
+#about h1 {
+	font-size: 60px;
+	font-weight: 300;
+}
+
+#name {
+	font-weight: 400;
+	position: relative;
+}
+
+#name::after {
+	content: 'Web Designer';
+	font-size: 20px;
+	font-weight: 300;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: -10px auto;
+}
+
+/** Portfolio Page **/
+#portfolio {
+	background-color: #5b6ab1;
+}
+
+#wrap {
+	perspective: 1600px;
+	perspective-origin: 50% 100px;
+}
+
+#cube {
+	transform-style: preserve-3d;
+}
+
+#cube div {
+	display: block;
+	position: absolute;
+	background-color: #60c2ef;
+	transform-origin: 50% 50% 0;
+}
+
+ 
+@keyframes spin {
+	from { transform: rotateY(0deg); }
+	to { transform: rotateY(-90deg); }
+}
+
+#cube {
+	/*animation: spin 1s infinite linear;*/
+} 
+
+/** Contact Page **/
+#contact {
+	background-color: #2b2a41;
+}
+
+#contact h3 {
+	font-size: 21px;
+	font-weight: 300;
+}
+
+#email h1 {
+	font-weight: 300;
+}
+
+#email a {
+	text-decoration: none;
+	color: #ffffff;	
+}
+
+#social-media img {
+	width: 50px;
+	margin: 15px 10px;
+	opacity: 0.05;
+	transition: all .2s ease-in-out;
+}
+
+#social-media img:hover {
+	opacity: 1;
+}
