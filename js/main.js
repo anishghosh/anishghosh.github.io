@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+		$(window).load(function() {
+			$("#loading").fadeOut("slow");
+			$(".navbar").addClass("navbar-fixed-top")
+		})
+
 		var $active = $('a.active');
 		$active.removeAttr('class');
 		$active[0].style.setProperty('color', '#ffffff', 'important');

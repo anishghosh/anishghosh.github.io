@@ -4,6 +4,14 @@ body {
 	color: #ffffff;
 }
 
+/** Loading **/
+#loading {
+	width: 100vw;
+	height: 100vh;
+	background: #DB0A5B;
+	z-index: 99999;
+}
+
 /** Navbar **/
 .navbar {
 	padding: 10px 40px;
