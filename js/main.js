@@ -3,18 +3,20 @@ $(document).ready(function() {
 		var $active = $('a.active');
 		$active.removeAttr('class');
 		$active[0].style.setProperty('color', '#ffffff', 'important');
-
+		var imgs = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.png", "img4.jpg"];
+		
 		var wrapWidthReduction = 150;
 		function setCube() {
-			var cubeWidth = $("#wrap").parent().width()-wrapWidthReduction, cubeHeight = 400;
+			var cubeWidth = $("#wrap").parent().width()-wrapWidthReduction, cubeHeight = cubeWidth/2;
 			$("#wrap").css({"width": cubeWidth+"px", "height": cubeHeight+"px"});
 			$("#cube div").css({"width": cubeWidth+"px", "height": cubeHeight+"px"});
 			$("#cube").children().each(function() {
 				var ids = ["front", "back", "left", "right"];
 				var transformProperty = ["", "rotateY(180deg)", "rotateY(-90deg)", "rotateY(90deg)"];
-				var transform = transformProperty[ids.indexOf($(this).attr("id"))]+" translateZ("+cubeWidth/2+"px)";
+				var index = ids.indexOf($(this).attr("id"));
+				var transform = transformProperty[index]+" translateZ("+cubeWidth/2+"px)";
 				$(this).css("transform", transform);
-				$(this).html("<img src='http://placehold.it/"+cubeWidth+"x"+cubeHeight+"'>")
+				$(this).css({"background-image": "url('assets/"+imgs[index]+"')", "background-size": "cover"})
 			});
 		}
 
@@ -24,9 +26,12 @@ $(document).ready(function() {
 			$("#about .row").css("margin-top", marginTop+"px");
 
 			// portfolio
-			var marginTop = ($("#portfolio").height()-$("#wrap").height())/2 - 10;
+			marginTop = ($("#portfolio").height()-$("#wrap").height())/2 - 50;
 			var marginLeft = wrapWidthReduction/2;
 			$("#wrap").css("margin-top", marginTop+"px").css("margin-left", marginLeft+"px");
+			var marginBottom = -170;
+			marginLeft = ($("#wrap").width()-$("#controls").width())/2;
+			$("#controls").css("margin-bottom", marginBottom+"px").css("margin-left", marginLeft+"px");
 
 			// contact
 			marginTop = $(".navbar").height() + 100;
@@ -42,6 +47,23 @@ $(document).ready(function() {
 			setMargins();
 		});
 
+		var rotateY = 0;
+		$("#controls").children().each(function() {
+			$(this).click(function(e){
+				e.preventDefault();
+				var elemName = $(this).attr('class');
+				var flag = elemName==='prev';
+				rotateY += flag?90:-90;
+				$("#cube").stop().transition({
+					rotateY: rotateY+'deg',
+					complete: function() {
+						rotateY = Math.abs(rotateY)==360?0:rotateY;
+						$(this).css("transform", "rotateY("+rotateY+"deg)");
+					}
+				})
+			});
+		});
+
 		var clicked = false;
 
 		$(".navbar-default .navbar-nav>li>a").on("click", function(e) {
@@ -55,14 +77,20 @@ $(document).ready(function() {
 			$active = $(this);
 			$('html, body').stop().animate({
 				'scrollTop': $target.offset().top
-			}, 900, function() {clicked=false;console.log(clicked)});
+			}, 900, "swing", function() {clicked=false;});
 		});
 
 		$(window).scroll(function() {
+			var top = $(document).scrollTop();
+			if(top>100) {
+				$(".navbar").addClass('navbar-scrolled');
+			} else {
+				$(".navbar").removeClass('navbar-scrolled');
+			}
+
 			if(clicked) return;
 
 			var pageTops = [$('#about').offset().top, $('#portfolio').offset().top, $('#contact').offset().top];
-			var top = $(document).scrollTop();
 
 			var elem = $(".navbar-default .navbar-nav>li>a");
 			if(typeof $active.removeAttr == 'function') $active.removeAttr('style');
