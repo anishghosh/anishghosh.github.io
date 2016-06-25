@@ -6,10 +6,35 @@ body {
 
 /** Loading **/
 #loading {
+	position: fixed;
+	top: 0;
 	width: 100vw;
 	height: 100vh;
 	background: #DB0A5B;
 	z-index: 99999;
+}
+
+#loading svg {
+	width: 100px;
+	margin-top: 20%;
+}
+
+#loading h1 {
+	font-weight: 300;
+}
+
+#loading h1 strong {
+	font-weight: 600;
+}
+
+@keyframes rotate {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+#loading svg path#g {
+	transform-origin: center 47%;
+	animation: rotate 1s infinite linear;
 }
 
 /** Navbar **/
