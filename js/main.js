@@ -40,8 +40,11 @@ $(document).ready(function() {
 			$("#email").css("margin-top", marginTop+"px");
 		}
 		
-		setCube();
-		setMargins();
+		$(window).load(function() {
+			setCube();
+			setMargins();
+		});
+		
 		$(window).resize(function() {
 			setCube();
 			setMargins();
