@@ -20,6 +20,17 @@ $(document).ready(function() {
 			});
 		}
 
+		function rotateCube(rotateY) {
+			$("#cube").stop().transition({
+				rotateY: rotateY+'deg',
+				complete: function() {
+					rotateY = Math.abs(rotateY)==360?0:rotateY;
+					$(this).css("transform", "rotateY("+rotateY+"deg)");
+				}
+			});
+			return rotateY;
+		}
+
 		function setMargins() {
 			// about
 			var marginTop = ($("#about").height()-$("#about .row").height())/2;
@@ -51,51 +62,46 @@ $(document).ready(function() {
 		});
 
 		var rotateY = 0;
-		var mouseDown = false;
-		var startX = 0;
-		var moveX = 0;
-		$("#portfolio")
-			.on("swipeleft", function() {
-				rotateY += -90;
-				$("#cube").stop().transition({
-					rotateY: rotateY+'deg',
-					complete: function() {
-						rotateY = Math.abs(rotateY)==360?0:rotateY;
-						$(this).css("transform", "rotateY("+rotateY+"deg)");
-					}
-				})
-			}).on("swiperight", function() {
-				rotateY += 90;
-				$("#cube").stop().transition({
-					rotateY: rotateY+'deg',
-					complete: function() {
-						rotateY = Math.abs(rotateY)==360?0:rotateY;
-						$(this).css("transform", "rotateY("+rotateY+"deg)");
-					}
-				})
-			});
 
-		$("#portfolio").children().each(function() {
-			$(this).on("mousedown", function(e) { e.preventDefault(); })
-		})
-
+		// rotating cube using controls
 		$("#controls").children().each(function() {
 			$(this).click(function(e){
 				e.preventDefault();
+				clicked = true;
 				var flag = $(this).hasClass('prev');
 				rotateY += flag?90:-90;
-				$("#cube").stop().transition({
-					rotateY: rotateY+'deg',
-					complete: function() {
-						rotateY = Math.abs(rotateY)==360?0:rotateY;
-						$(this).css("transform", "rotateY("+rotateY+"deg)");
-					}
-				})
+				rotateY = rotateCube(rotateY);
 			});
 		});
 
-		var clicked = false;
+		$("#portfolio").children().each(function() {
+			$(this).on("mousedown", function(e) { e.preventDefault(); })
+		});
 
+		// swipe function
+		var mouseDown = false;
+		var startX = -1;
+		var moveX = -1;
+		$("#portfolio")
+			.bind("touchstart mousedown", function(e) {
+				if($(e.target).is(".glyphicon")) return;
+				startX = e.type!=="touchstart"?e.clientX:e.originalEvent.changedTouches[0].clientX;
+				mouseDown = true;
+			})
+			.bind("touchend mouseup", function(e) {
+				if($(e.target).is(".glyphicon") || startX == -1 || moveX == -1) return;
+				mouseDown = false;
+				rotateY += startX<moveX?90:-90;
+				rotateY = rotateCube(rotateY);
+				startX = moveX = -1;
+			})
+			.bind("touchmove mousemove", function(e) {
+				if(!mouseDown) return;
+				moveX = e.type!=="touchmove"?e.clientX:e.originalEvent.changedTouches[0].clientX;
+			});
+
+		// navbar functions
+		var clicked = false;
 		$(".navbar-default .navbar-nav>li>a").on("click", function(e) {
 			e.preventDefault();
 			clicked = true;
