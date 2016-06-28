@@ -21,7 +21,7 @@ $(document).ready(function() {
 		}
 
 		function rotateCube(rotateY) {
-			$("#cube").stop().transition({
+			$("#cube").transition({
 				rotateY: rotateY+'deg',
 				complete: function() {
 					rotateY = Math.abs(rotateY)==360?0:rotateY;
