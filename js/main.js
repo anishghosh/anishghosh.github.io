@@ -51,11 +51,38 @@ $(document).ready(function() {
 		});
 
 		var rotateY = 0;
+		var mouseDown = false;
+		var startX = 0;
+		var moveX = 0;
+		$("#portfolio")
+			.on("swipeleft", function() {
+				rotateY += -90;
+				$("#cube").stop().transition({
+					rotateY: rotateY+'deg',
+					complete: function() {
+						rotateY = Math.abs(rotateY)==360?0:rotateY;
+						$(this).css("transform", "rotateY("+rotateY+"deg)");
+					}
+				})
+			}).on("swiperight", function() {
+				rotateY += 90;
+				$("#cube").stop().transition({
+					rotateY: rotateY+'deg',
+					complete: function() {
+						rotateY = Math.abs(rotateY)==360?0:rotateY;
+						$(this).css("transform", "rotateY("+rotateY+"deg)");
+					}
+				})
+			});
+
+		$("#portfolio").children().each(function() {
+			$(this).on("mousedown", function(e) { e.preventDefault(); })
+		})
+
 		$("#controls").children().each(function() {
 			$(this).click(function(e){
 				e.preventDefault();
-				var elemName = $(this).attr('class');
-				var flag = elemName==='prev';
+				var flag = $(this).hasClass('prev');
 				rotateY += flag?90:-90;
 				$("#cube").stop().transition({
 					rotateY: rotateY+'deg',
