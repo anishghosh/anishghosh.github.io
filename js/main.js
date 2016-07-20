@@ -1,7 +1,9 @@
 $(document).ready(function() {
 		
 		$(window).scroll(function() {
-			if($(document).scrollTop() >= $(".contact").offset().top - 300) {
+			var contactTop = $(".contact").offset().top;
+			contactTop = $(window).width()>700?contactTop-300:contactTop/2;
+			if($(document).scrollTop() >= contactTop) {
 				$(".social").removeClass("remove");
 			} else {
 				$(".social").addClass("remove");
